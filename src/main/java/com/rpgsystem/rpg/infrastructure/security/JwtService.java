@@ -24,16 +24,21 @@ public class JwtService {
 
     public String generateToken(User user) {
         Date now = new Date();
-        Date expiry = new Date(now.getTime() + 1000 * 60 * 60 * 2); // 2 horas
+        Date expiry = new Date(now.getTime() + 1000 * 60 * 60 * 12); // 12 horas
+
+        String role = user.isMaster() ? "MASTER" : "PLAYER";
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
-                .claim("id", user.getId().toString())
+                .claim("id", user.getId())
+                .claim("name", user.getName())
+                .claim("role", role)
                 .setIssuedAt(now)
                 .setExpiration(expiry)
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
 
     public String extractUsername(String token) {
         return Jwts.parserBuilder()

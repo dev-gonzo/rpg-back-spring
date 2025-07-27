@@ -1,9 +1,7 @@
 package com.rpgsystem.rpg.domain.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.rpgsystem.rpg.domain.enums.Role;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -54,6 +52,12 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+
+    @Transient
+    public Role getRole() {
+        return isMaster ? Role.MASTER : Role.PLAYER;
     }
 
     @Override public boolean isAccountNonExpired() { return true; }
