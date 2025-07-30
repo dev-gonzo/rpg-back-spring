@@ -2,11 +2,12 @@ package com.rpgsystem.rpg.api.controller.character;
 
 import com.rpgsystem.rpg.application.dto.CharacterHomeDto;
 import com.rpgsystem.rpg.application.service.CharacterService;
-import com.rpgsystem.rpg.domain.model.Character;
 import com.rpgsystem.rpg.domain.model.User;
 import com.rpgsystem.rpg.infrastructure.security.AuthenticatedUserProvider;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

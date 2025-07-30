@@ -116,6 +116,7 @@ public class Character {
     @Column(name = "\"updatedAt\"", nullable = false)
     private Instant updatedAt;
 
+    @Column(columnDefinition = "TEXT")
     private String image;
 
     @Column(nullable = false)

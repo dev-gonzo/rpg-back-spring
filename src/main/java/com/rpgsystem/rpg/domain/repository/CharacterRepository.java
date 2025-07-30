@@ -9,6 +9,10 @@ import java.util.List;
 
 public interface CharacterRepository extends JpaRepository<Character, String> {
 
+    @Query("SELECT c FROM Character c WHERE c.controlUser IS NULL ORDER BY c.name ASC")
+    List<Character> findAllByNotControlUserOrdered();
+
+
     @Query("SELECT c FROM Character c WHERE c.controlUser = :user ORDER BY c.name ASC")
     List<Character> findAllByControlUserOrdered(User user);
 
