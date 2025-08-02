@@ -1,6 +1,6 @@
 package com.rpgsystem.rpg.infrastructure.security;
 
-import com.rpgsystem.rpg.domain.model.User;
+import com.rpgsystem.rpg.domain.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.io.Decoders;

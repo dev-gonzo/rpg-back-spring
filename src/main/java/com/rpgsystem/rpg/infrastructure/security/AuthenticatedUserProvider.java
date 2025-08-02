@@ -3,7 +3,7 @@ package com.rpgsystem.rpg.infrastructure.security;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import com.rpgsystem.rpg.domain.model.User;
+import com.rpgsystem.rpg.domain.entity.User;
 
 @Component
 public class AuthenticatedUserProvider {

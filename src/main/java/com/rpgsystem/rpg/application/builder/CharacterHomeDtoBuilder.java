@@ -1,7 +1,7 @@
 package com.rpgsystem.rpg.application.builder;
 
-import com.rpgsystem.rpg.application.dto.CharacterHomeDto;
-import com.rpgsystem.rpg.domain.model.Character;
+import com.rpgsystem.rpg.application.dto.character.CharacterHomeDto;
+import com.rpgsystem.rpg.domain.entity.Character;
 
 public class CharacterHomeDtoBuilder {
 

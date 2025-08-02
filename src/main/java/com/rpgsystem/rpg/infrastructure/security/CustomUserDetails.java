@@ -1,6 +1,6 @@
 package com.rpgsystem.rpg.infrastructure.security;
 
-import com.rpgsystem.rpg.domain.model.User;
+import com.rpgsystem.rpg.domain.entity.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.rpgsystem.rpg.domain.repository;
 
-import com.rpgsystem.rpg.domain.model.User;
+import com.rpgsystem.rpg.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

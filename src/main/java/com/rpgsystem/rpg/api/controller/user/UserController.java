@@ -1,6 +1,6 @@
 package com.rpgsystem.rpg.api.controller.user;
 
-import com.rpgsystem.rpg.domain.model.User;
+import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.infrastructure.security.AuthenticatedUserProvider;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

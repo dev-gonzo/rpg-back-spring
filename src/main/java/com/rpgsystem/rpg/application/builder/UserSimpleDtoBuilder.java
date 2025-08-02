@@ -1,7 +1,7 @@
 package com.rpgsystem.rpg.application.builder;
 
 import com.rpgsystem.rpg.application.dto.UserSimpleDto;
-import com.rpgsystem.rpg.domain.model.User;
+import com.rpgsystem.rpg.domain.entity.User;
 
 public class UserSimpleDtoBuilder {
 

@@ -1,6 +1,6 @@
-package com.rpgsystem.rpg.application.dto;
+package com.rpgsystem.rpg.application.dto.character;
 
-import com.rpgsystem.rpg.domain.model.User;
+import com.rpgsystem.rpg.application.dto.UserSimpleDto;
 import lombok.Builder;
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.rpgsystem.rpg.domain.model;
+package com.rpgsystem.rpg.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -27,7 +28,7 @@ public class Character {
     private String profession;
 
     @Column(name = "\"birthDate\"", nullable = false)
-    private Instant birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "\"birthPlace\"")
     private String birthPlace;

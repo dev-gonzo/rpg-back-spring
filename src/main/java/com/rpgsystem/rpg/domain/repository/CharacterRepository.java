@@ -1,7 +1,7 @@
 package com.rpgsystem.rpg.domain.repository;
 
-import com.rpgsystem.rpg.domain.model.Character;
-import com.rpgsystem.rpg.domain.model.User;
+import com.rpgsystem.rpg.domain.entity.Character;
+import com.rpgsystem.rpg.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

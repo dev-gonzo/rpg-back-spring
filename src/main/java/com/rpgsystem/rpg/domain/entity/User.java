@@ -1,4 +1,4 @@
-package com.rpgsystem.rpg.domain.model;
+package com.rpgsystem.rpg.domain.entity;
 
 import com.rpgsystem.rpg.domain.enums.Role;
 import jakarta.persistence.*;
