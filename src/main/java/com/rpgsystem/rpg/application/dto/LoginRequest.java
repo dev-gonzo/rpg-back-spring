@@ -1,3 +1,11 @@
 package com.rpgsystem.rpg.application.dto;
 
-public record LoginRequest(String email, String password) {}
+import jakarta.validation.constraints.NotNull;
+
+public record LoginRequest(
+        @NotNull(message = "Birth date is required")
+        String email,
+        @NotNull(message = "Birth date is required")
+        String password
+) {
+}

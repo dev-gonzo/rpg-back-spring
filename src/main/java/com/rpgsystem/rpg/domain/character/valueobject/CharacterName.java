@@ -1,0 +1,26 @@
+package com.rpgsystem.rpg.domain.character.valueobject;
+
+import com.rpgsystem.rpg.domain.exception.DomainException;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
+@EqualsAndHashCode
+public class CharacterName {
+
+    private final String value;
+
+    public CharacterName(String value) {
+        if (value == null || value.isBlank()) {
+            throw new DomainException("Character name must not be null or blank");
+        }
+
+        if (value.length() > 100) {
+            throw new DomainException("Character name must be at most 100 characters");
+        }
+
+        this.value = value.trim();
+    }
+}
