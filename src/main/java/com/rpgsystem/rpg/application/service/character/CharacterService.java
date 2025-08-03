@@ -21,7 +21,7 @@ public class CharacterService {
     public CharacterInfoResponse create(CharacterInfoRequest characterInfoRequest, User user) {
 
         CharacterInfo characterInfo = characterInfoService.createInfoDto(characterInfoRequest);
-        String id = CodigoId.novo().getValor();
+        String id = CodigoId.novo().getValue();
 
         CharacterEntity character = CharacterEntity.builder()
                 .id(id)

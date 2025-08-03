@@ -1,7 +1,9 @@
 package com.rpgsystem.rpg.application.builder;
 
+import com.rpgsystem.rpg.api.dto.character.CharacterAttributeResponse;
 import com.rpgsystem.rpg.api.dto.character.CharacterInfoResponse;
 import com.rpgsystem.rpg.domain.character.CharacterInfo;
+import com.rpgsystem.rpg.domain.entity.AttributeEntity;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 
 public class CharacterInfoDtoBuilder {
@@ -54,4 +56,6 @@ public class CharacterInfoDtoBuilder {
                 .religion(characterInfo.getReligion())
                 .build();
     }
+
+
 }

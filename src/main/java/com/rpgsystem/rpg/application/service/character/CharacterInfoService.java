@@ -5,9 +5,9 @@ import com.rpgsystem.rpg.api.dto.character.CharacterInfoResponse;
 import com.rpgsystem.rpg.application.builder.CharacterInfoDtoBuilder;
 import com.rpgsystem.rpg.domain.character.CharacterInfo;
 import com.rpgsystem.rpg.domain.character.updater.CharacterInfoUpdater;
-import com.rpgsystem.rpg.domain.character.valueobject.CharacterName;
-import com.rpgsystem.rpg.domain.character.valueobject.Height;
-import com.rpgsystem.rpg.domain.character.valueobject.Weight;
+import com.rpgsystem.rpg.domain.character.valueObject.CharacterName;
+import com.rpgsystem.rpg.domain.character.valueObject.Height;
+import com.rpgsystem.rpg.domain.character.valueObject.Weight;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.domain.exception.UnauthorizedActionException;
@@ -22,12 +22,11 @@ public class CharacterInfoService {
 
     private final CharacterRepository repository;
 
-
     private CharacterEntity getById(String id) {
 
-         CharacterEntity characterEntity = repository.findById(id).orElse(null);
+        CharacterEntity characterEntity = repository.findById(id).orElse(null);
 
-        if(characterEntity == null) {
+        if (characterEntity == null) {
             throw new EntityNotFoundException(id);
         }
 
@@ -62,8 +61,7 @@ public class CharacterInfoService {
         CharacterEntity characterEntity = this.getById(id);
 
 
-
-        if(!characterEntity.getControlUser().equals(user) && !user.isMaster()) {
+        if (!characterEntity.getControlUser().equals(user) && !user.isMaster()) {
             throw new UnauthorizedActionException("Action not performed, user without permission");
         }
 

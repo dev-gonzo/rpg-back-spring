@@ -1,4 +1,4 @@
-package com.rpgsystem.rpg.domain.character.valueobject;
+package com.rpgsystem.rpg.domain.character.valueObject;
 
 import com.rpgsystem.rpg.domain.exception.DomainException;
 import lombok.EqualsAndHashCode;

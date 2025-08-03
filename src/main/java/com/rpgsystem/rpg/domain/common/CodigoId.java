@@ -17,7 +17,7 @@ public final class CodigoId {
         return new CodigoId(UUID.randomUUID().toString());
     }
 
-    public String getValor() {
+    public String getValue() {
         return valor;
     }
 
