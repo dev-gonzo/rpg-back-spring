@@ -1,13 +1,13 @@
 package com.rpgsystem.rpg.application.builder;
 
-import com.rpgsystem.rpg.application.dto.character.CharacterInfoDto;
+import com.rpgsystem.rpg.api.dto.character.CharacterInfoResponse;
 import com.rpgsystem.rpg.domain.character.CharacterInfo;
-import com.rpgsystem.rpg.domain.entity.Character;
+import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 
 public class CharacterInfoDtoBuilder {
 
-    public static CharacterInfoDto from(Character c) {
-        return CharacterInfoDto.builder()
+    public static CharacterInfoResponse from(CharacterEntity c) {
+        return CharacterInfoResponse.builder()
                 .id(c.getId())
                 .name(c.getName())
                 .profession(c.getProfession())
@@ -23,8 +23,8 @@ public class CharacterInfoDtoBuilder {
     }
 
 
-    public static CharacterInfoDto from(CharacterInfo characterInfo, String id) {
-        return CharacterInfoDto.builder()
+    public static CharacterInfoResponse from(CharacterInfo characterInfo, String id) {
+        return CharacterInfoResponse.builder()
                 .id(id)
                 .name(characterInfo.getName() != null ? characterInfo.getName().getValue() : null)
                 .profession(characterInfo.getProfession())
@@ -40,8 +40,8 @@ public class CharacterInfoDtoBuilder {
     }
 
 
-    public static CharacterInfoDto from(CharacterInfo characterInfo) {
-        return CharacterInfoDto.builder()
+    public static CharacterInfoResponse from(CharacterInfo characterInfo) {
+        return CharacterInfoResponse.builder()
                 .name(characterInfo.getName() != null ? characterInfo.getName().getValue() : null)
                 .profession(characterInfo.getProfession())
                 .birthDate(characterInfo.getBirthDate())

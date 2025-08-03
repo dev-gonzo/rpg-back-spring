@@ -1,10 +1,12 @@
 package com.rpgsystem.rpg.api.controller.character;
 
-import com.rpgsystem.rpg.application.dto.character.CharacterInfoDto;
-import com.rpgsystem.rpg.application.dto.character.CharacterInfoRequest;
+import com.rpgsystem.rpg.api.dto.character.CharacterInfoResponse;
+import com.rpgsystem.rpg.api.dto.character.CharacterInfoRequest;
 import com.rpgsystem.rpg.application.service.character.CharacterService;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.infrastructure.security.AuthenticatedUserProvider;
+import com.rpgsystem.rpg.infrastructure.security.annotation.RequireAuthUser;
+import com.rpgsystem.rpg.infrastructure.security.util.AuthenticatedUserHelper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,16 +25,12 @@ public class CharacterController {
 
 
     @PostMapping
-    public ResponseEntity<CharacterInfoDto> create(
+    @RequireAuthUser
+    public ResponseEntity<CharacterInfoResponse> create(
             @Valid @RequestBody CharacterInfoRequest request
     ) {
-        User user = authenticatedUserProvider.getAuthenticatedUser();
-
-        if (user == null) {
-            return ResponseEntity.status(401).build();
-        }
-
-        return ResponseEntity.ok(characterService.create(request));
+        User user = AuthenticatedUserHelper.get();
+        return ResponseEntity.ok(characterService.create(request, user));
     }
 
 }

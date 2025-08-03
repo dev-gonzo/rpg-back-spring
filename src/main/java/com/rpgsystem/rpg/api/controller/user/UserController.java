@@ -2,6 +2,8 @@ package com.rpgsystem.rpg.api.controller.user;
 
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.infrastructure.security.AuthenticatedUserProvider;
+import com.rpgsystem.rpg.infrastructure.security.annotation.RequireAuthUser;
+import com.rpgsystem.rpg.infrastructure.security.util.AuthenticatedUserHelper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +20,9 @@ public class UserController {
     }
 
     @GetMapping("/me")
+    @RequireAuthUser
     public ResponseEntity<?> getLoggedUserInfo() {
-        User user = userProvider.getAuthenticatedUser();
-
-        if (user == null) {
-            return ResponseEntity.status(401).body("Unauthorized");
-        }
+        User user = AuthenticatedUserHelper.get();
 
         return ResponseEntity.ok(Map.of(
                 "id", user.getId(),

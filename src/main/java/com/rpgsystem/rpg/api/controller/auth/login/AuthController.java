@@ -1,7 +1,7 @@
 package com.rpgsystem.rpg.api.controller.auth.login;
 
-import com.rpgsystem.rpg.application.dto.LoginRequest;
-import com.rpgsystem.rpg.application.dto.LoginResponse;
+import com.rpgsystem.rpg.api.dto.LoginRequest;
+import com.rpgsystem.rpg.api.dto.LoginResponse;
 import com.rpgsystem.rpg.application.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

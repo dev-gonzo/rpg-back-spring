@@ -1,11 +1,11 @@
 package com.rpgsystem.rpg.application.builder;
 
-import com.rpgsystem.rpg.application.dto.character.CharacterHomeDto;
-import com.rpgsystem.rpg.domain.entity.Character;
+import com.rpgsystem.rpg.api.dto.character.CharacterHomeDto;
+import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 
 public class CharacterHomeDtoBuilder {
 
-    public static CharacterHomeDto from(Character c) {
+    public static CharacterHomeDto from(CharacterEntity c) {
         return CharacterHomeDto.builder()
                 .id(c.getId())
                 .name(c.getName())

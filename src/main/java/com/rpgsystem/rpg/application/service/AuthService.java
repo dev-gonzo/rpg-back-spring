@@ -1,7 +1,7 @@
 package com.rpgsystem.rpg.application.service;
 
-import com.rpgsystem.rpg.application.dto.LoginRequest;
-import com.rpgsystem.rpg.application.dto.LoginResponse;
+import com.rpgsystem.rpg.api.dto.LoginRequest;
+import com.rpgsystem.rpg.api.dto.LoginResponse;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.domain.exception.InvalidCredentialsException;
 import com.rpgsystem.rpg.infrastructure.security

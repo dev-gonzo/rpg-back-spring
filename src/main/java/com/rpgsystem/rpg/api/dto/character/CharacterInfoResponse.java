@@ -1,4 +1,4 @@
-package com.rpgsystem.rpg.application.dto.character;
+package com.rpgsystem.rpg.api.dto.character;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 @Builder
-public class CharacterInfoDto {
+public class CharacterInfoResponse {
 
     private String id;
     private String name;

@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Character {
+public class CharacterEntity {
 
     @Id
     private String id;

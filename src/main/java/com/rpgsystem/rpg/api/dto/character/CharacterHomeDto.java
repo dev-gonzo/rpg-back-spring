@@ -1,6 +1,6 @@
-package com.rpgsystem.rpg.application.dto.character;
+package com.rpgsystem.rpg.api.dto.character;
 
-import com.rpgsystem.rpg.application.dto.UserSimpleDto;
+import com.rpgsystem.rpg.api.dto.UserSimpleResponse;
 import lombok.Builder;
 import lombok.Data;
 
@@ -29,7 +29,7 @@ public class CharacterHomeDto {
 
     private String image;
 
-    private UserSimpleDto controlUser;
+    private UserSimpleResponse controlUser;
 
     private boolean edit;
 }

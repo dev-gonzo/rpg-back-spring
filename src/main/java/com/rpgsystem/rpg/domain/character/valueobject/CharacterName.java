@@ -23,4 +23,10 @@ public class CharacterName {
 
         this.value = value.trim();
     }
+
+    public static CharacterName of(String value) {
+        if (value == null || value.isBlank()) return null;
+        return new CharacterName(value);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.rpgsystem.rpg.application.dto.character;
+package com.rpgsystem.rpg.api.dto.character;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

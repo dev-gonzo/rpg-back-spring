@@ -1,3 +1,3 @@
-package com.rpgsystem.rpg.application.dto;
+package com.rpgsystem.rpg.api.dto;
 
 public record LoginResponse(String token) {}

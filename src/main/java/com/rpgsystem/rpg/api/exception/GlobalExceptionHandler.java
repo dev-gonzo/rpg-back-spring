@@ -3,6 +3,7 @@ package com.rpgsystem.rpg.api.exception;
 import com.fasterxml.jackson.core.exc.InputCoercionException;
 import com.rpgsystem.rpg.domain.exception.DomainException;
 import com.rpgsystem.rpg.domain.exception.InvalidCredentialsException;
+import com.rpgsystem.rpg.domain.exception.UnauthorizedActionException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,6 +68,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .badRequest()
                 .body(ErrorResponse.of("JSON Error", "Malformed request payload."));
+    }
+
+    @ExceptionHandler(UnauthorizedActionException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorized(UnauthorizedActionException ex) {
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(ErrorResponse.of("Unauthorized", ex.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)

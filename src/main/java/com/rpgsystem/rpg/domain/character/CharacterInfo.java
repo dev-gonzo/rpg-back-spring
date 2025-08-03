@@ -3,6 +3,7 @@ package com.rpgsystem.rpg.domain.character;
 import com.rpgsystem.rpg.domain.character.valueobject.CharacterName;
 import com.rpgsystem.rpg.domain.character.valueobject.Height;
 import com.rpgsystem.rpg.domain.character.valueobject.Weight;
+import com.rpgsystem.rpg.domain.common.CodigoId;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Getter
 public class CharacterInfo {
 
+    private final CodigoId id;
     private final CharacterName name;
     private final String profession;
     private final LocalDate birthDate;
@@ -22,5 +24,4 @@ public class CharacterInfo {
     private final Height heightCm;
     private final Weight weightKg;
     private final String religion;
-
 }
