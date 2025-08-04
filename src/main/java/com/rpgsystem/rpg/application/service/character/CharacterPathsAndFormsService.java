@@ -1,9 +1,9 @@
 package com.rpgsystem.rpg.application.service.character;
 
-import com.rpgsystem.rpg.api.dto.character.PathsAndFormsRequest;
-import com.rpgsystem.rpg.api.dto.character.PathsAndFormsResponse;
-import com.rpgsystem.rpg.application.builder.PathsAndFormsDtoBuilder;
-import com.rpgsystem.rpg.domain.character.updater.PathsAndFormsUpdater;
+import com.rpgsystem.rpg.api.dto.character.CharacterPathsAndFormsRequest;
+import com.rpgsystem.rpg.api.dto.character.CharacterPathsAndFormsResponse;
+import com.rpgsystem.rpg.application.builder.CharacterPathsAndFormsDtoBuilder;
+import com.rpgsystem.rpg.domain.character.updater.CharacterPathsAndFormsUpdater;
 import com.rpgsystem.rpg.domain.common.CharacterAccessValidator;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.PathsAndFormsEntity;
@@ -20,27 +20,27 @@ public class CharacterPathsAndFormsService {
     private final CharacterService characterService;
     private final CharacterAccessValidator accessValidator;
 
-    public PathsAndFormsResponse get(String characterId, User user) {
+    public CharacterPathsAndFormsResponse get(String characterId, User user) {
         CharacterEntity character = characterService.getById(characterId);
         accessValidator.validateControlAccess(character, user);
 
         PathsAndFormsEntity entity = repository.findById(characterId)
                 .orElseThrow(() -> new EntityNotFoundException(characterId));
 
-        return PathsAndFormsDtoBuilder.from(entity);
+        return CharacterPathsAndFormsDtoBuilder.from(entity);
     }
 
-    public PathsAndFormsResponse save(String characterId, PathsAndFormsRequest request, User user) {
+    public CharacterPathsAndFormsResponse save(String characterId, CharacterPathsAndFormsRequest request, User user) {
         CharacterEntity character = characterService.getById(characterId);
         accessValidator.validateControlAccess(character, user);
 
         PathsAndFormsEntity entity = repository.findById(characterId)
                 .orElseThrow(() -> new EntityNotFoundException(characterId));
 
-        new PathsAndFormsUpdater(request).apply(entity);
+        new CharacterPathsAndFormsUpdater(request).apply(entity);
 
         PathsAndFormsEntity saved = repository.save(entity);
 
-        return PathsAndFormsDtoBuilder.from(saved);
+        return CharacterPathsAndFormsDtoBuilder.from(saved);
     }
 }

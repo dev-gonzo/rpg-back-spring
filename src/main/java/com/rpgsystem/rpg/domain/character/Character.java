@@ -8,5 +8,5 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class Character {
     private final CodigoId id;
-    private final CharacterInfo characterInfo;
+    private final CharacterCharacterInfo characterCharacterInfo;
 }

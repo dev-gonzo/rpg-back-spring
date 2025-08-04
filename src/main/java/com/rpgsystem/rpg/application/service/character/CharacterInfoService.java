@@ -3,7 +3,7 @@ package com.rpgsystem.rpg.application.service.character;
 import com.rpgsystem.rpg.api.dto.character.CharacterInfoRequest;
 import com.rpgsystem.rpg.api.dto.character.CharacterInfoResponse;
 import com.rpgsystem.rpg.application.builder.CharacterInfoDtoBuilder;
-import com.rpgsystem.rpg.domain.character.CharacterInfo;
+import com.rpgsystem.rpg.domain.character.CharacterCharacterInfo;
 import com.rpgsystem.rpg.domain.character.updater.CharacterInfoUpdater;
 import com.rpgsystem.rpg.domain.character.valueObject.CharacterName;
 import com.rpgsystem.rpg.domain.character.valueObject.Height;
@@ -11,9 +11,7 @@ import com.rpgsystem.rpg.domain.character.valueObject.Weight;
 import com.rpgsystem.rpg.domain.common.CharacterAccessValidator;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.User;
-import com.rpgsystem.rpg.domain.exception.UnauthorizedActionException;
 import com.rpgsystem.rpg.domain.repository.character.CharacterRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +29,8 @@ public class CharacterInfoService {
 
     }
 
-    public CharacterInfo createInfoDto(CharacterInfoRequest request) {
-        return new CharacterInfo(
+    public CharacterCharacterInfo createInfoDto(CharacterInfoRequest request) {
+        return new CharacterCharacterInfo(
                 null,
                 CharacterName.of(request.getName()),
                 request.getProfession(),
@@ -53,8 +51,8 @@ public class CharacterInfoService {
 
         characterAccessValidator.validateControlAccess(characterEntity, user);
 
-        CharacterInfo characterInfo = this.createInfoDto(request);
-        CharacterInfoUpdater updater = new CharacterInfoUpdater(characterInfo);
+        CharacterCharacterInfo characterCharacterInfo = this.createInfoDto(request);
+        CharacterInfoUpdater updater = new CharacterInfoUpdater(characterCharacterInfo);
         updater.apply(characterEntity);
 
         repository.save(characterEntity);

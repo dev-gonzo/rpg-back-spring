@@ -1,12 +1,12 @@
 package com.rpgsystem.rpg.application.builder;
 
-import com.rpgsystem.rpg.api.dto.character.CombatSkillResponse;
+import com.rpgsystem.rpg.api.dto.character.CharacterCombatSkillResponse;
 import com.rpgsystem.rpg.domain.entity.CombatSkillEntity;
 
 public class CombatSkillDtoBuilder {
 
-    public static CombatSkillResponse from(CombatSkillEntity entity) {
-        return CombatSkillResponse.builder()
+    public static CharacterCombatSkillResponse from(CombatSkillEntity entity) {
+        return CharacterCombatSkillResponse.builder()
                 .id(entity.getId())
                 .characterId(entity.getCharacter().getId())
                 .skill(entity.getSkill())

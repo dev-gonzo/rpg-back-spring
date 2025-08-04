@@ -1,7 +1,7 @@
 package com.rpgsystem.rpg.api.controller.character;
 
-import com.rpgsystem.rpg.api.dto.character.CombatSkillRequest;
-import com.rpgsystem.rpg.api.dto.character.CombatSkillResponse;
+import com.rpgsystem.rpg.api.dto.character.CharacterCombatSkillRequest;
+import com.rpgsystem.rpg.api.dto.character.CharacterCombatSkillResponse;
 import com.rpgsystem.rpg.application.service.character.CharacterCombatSkillService;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.infrastructure.security.annotation.RequireAuthUser;
@@ -22,14 +22,14 @@ public class CharacterCombatSkills {
 
     @GetMapping
     @RequireAuthUser
-    public ResponseEntity<List<CombatSkillResponse>> getSkills(@PathVariable String characterId) {
+    public ResponseEntity<List<CharacterCombatSkillResponse>> getSkills(@PathVariable String characterId) {
         User user = AuthenticatedUserHelper.get();
         return ResponseEntity.ok(service.getSkills(characterId, user));
     }
 
     @GetMapping("/{id}")
     @RequireAuthUser
-    public ResponseEntity<CombatSkillResponse> getSkill(
+    public ResponseEntity<CharacterCombatSkillResponse> getSkill(
             @PathVariable String characterId,
             @PathVariable String id) {
         User user = AuthenticatedUserHelper.get();
@@ -38,12 +38,12 @@ public class CharacterCombatSkills {
 
     @PostMapping("/{id}")
     @RequireAuthUser
-    public ResponseEntity<CombatSkillResponse> save(
+    public ResponseEntity<CharacterCombatSkillResponse> save(
             @PathVariable String characterId,
             @PathVariable String id,
-            @Valid @RequestBody CombatSkillRequest request) {
+            @Valid @RequestBody CharacterCombatSkillRequest request) {
         User user = AuthenticatedUserHelper.get();
-        CombatSkillResponse response = service.save(request, id, characterId, user);
+        CharacterCombatSkillResponse response = service.save(request, id, characterId, user);
         return ResponseEntity.ok(response);
     }
 }

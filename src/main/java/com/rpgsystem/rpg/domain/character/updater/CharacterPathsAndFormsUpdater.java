@@ -1,14 +1,14 @@
 package com.rpgsystem.rpg.domain.character.updater;
 
-import com.rpgsystem.rpg.api.dto.character.PathsAndFormsRequest;
+import com.rpgsystem.rpg.api.dto.character.CharacterPathsAndFormsRequest;
 import com.rpgsystem.rpg.domain.character.valueObject.Focus;
 import com.rpgsystem.rpg.domain.entity.PathsAndFormsEntity;
 
-public class PathsAndFormsUpdater {
+public class CharacterPathsAndFormsUpdater {
 
-    private final PathsAndFormsRequest request;
+    private final CharacterPathsAndFormsRequest request;
 
-    public PathsAndFormsUpdater(PathsAndFormsRequest request) {
+    public CharacterPathsAndFormsUpdater(CharacterPathsAndFormsRequest request) {
         this.request = request;
     }
 

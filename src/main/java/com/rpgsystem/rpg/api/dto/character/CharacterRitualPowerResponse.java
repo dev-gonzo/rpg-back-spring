@@ -7,20 +7,15 @@ import java.time.Instant;
 
 @Getter
 @Builder
-public class CombatSkillResponse {
+public class CharacterRitualPowerResponse {
 
     private String id;
     private String characterId;
 
-    private String skill;
-    private String group;
-    private String attribute;
-
-    private Integer attackCost;
-    private Integer defenseCost;
-
-    private Integer attackKitValue;
-    private Integer defenseKitValue;
+    private String name;
+    private String pathsForms;
+    private String description;
+    private String bookPage;
 
     private Instant createdAt;
     private Instant updatedAt;

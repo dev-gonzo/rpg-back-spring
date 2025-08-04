@@ -1,16 +1,16 @@
 package com.rpgsystem.rpg.domain.character.updater;
 
-import com.rpgsystem.rpg.api.dto.character.SkillRequest;
+import com.rpgsystem.rpg.api.dto.character.CharacterSkillRequest;
 import com.rpgsystem.rpg.domain.character.valueObject.AttributeLabel;
 import com.rpgsystem.rpg.domain.character.valueObject.Cost;
 import com.rpgsystem.rpg.domain.common.Name;
 import com.rpgsystem.rpg.domain.entity.SkillEntity;
 
-public class SkillUpdater {
+public class CharacterSkillUpdater {
 
-    private final SkillRequest request;
+    private final CharacterSkillRequest request;
 
-    public SkillUpdater(SkillRequest request) {
+    public CharacterSkillUpdater(CharacterSkillRequest request) {
         this.request = request;
     }
 

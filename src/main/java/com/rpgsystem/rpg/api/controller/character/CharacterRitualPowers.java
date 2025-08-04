@@ -1,8 +1,8 @@
 package com.rpgsystem.rpg.api.controller.character;
 
-import com.rpgsystem.rpg.api.dto.character.CharacterSkillRequest;
-import com.rpgsystem.rpg.api.dto.character.CharacterSkillResponse;
-import com.rpgsystem.rpg.application.service.character.CharacterSkillService;
+import com.rpgsystem.rpg.api.dto.character.CharacterRitualPowerRequest;
+import com.rpgsystem.rpg.api.dto.character.CharacterRitualPowerResponse;
+import com.rpgsystem.rpg.application.service.character.CharacterRitualPowerService;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.infrastructure.security.annotation.RequireAuthUser;
 import com.rpgsystem.rpg.infrastructure.security.util.AuthenticatedUserHelper;
@@ -14,38 +14,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/characters/{characterId}/skills")
+@RequestMapping("/characters/{characterId}/ritual-powers")
 @RequiredArgsConstructor
-public class CharacterSkills {
+public class CharacterRitualPowers {
 
-    private final CharacterSkillService service;
+    private final CharacterRitualPowerService service;
 
     @GetMapping
     @RequireAuthUser
-    public ResponseEntity<List<CharacterSkillResponse>> getSkills(@PathVariable String characterId) {
+    public ResponseEntity<List<CharacterRitualPowerResponse>> getAll(@PathVariable String characterId) {
         User user = AuthenticatedUserHelper.get();
-        return ResponseEntity.ok(service.getSkills(characterId, user));
+        return ResponseEntity.ok(service.getAll(characterId, user));
     }
 
     @GetMapping("/{id}")
     @RequireAuthUser
-    public ResponseEntity<CharacterSkillResponse> getSkill(
+    public ResponseEntity<CharacterRitualPowerResponse> get(
             @PathVariable String characterId,
             @PathVariable String id) {
-
         User user = AuthenticatedUserHelper.get();
-        return ResponseEntity.ok(service.getSkill(id, characterId, user));
+        return ResponseEntity.ok(service.get(characterId, id, user));
     }
 
     @PostMapping("/{id}")
     @RequireAuthUser
-    public ResponseEntity<CharacterSkillResponse> save(
+    public ResponseEntity<CharacterRitualPowerResponse> save(
             @PathVariable String characterId,
             @PathVariable String id,
-            @Valid @RequestBody CharacterSkillRequest request
-    ) {
+            @Valid @RequestBody CharacterRitualPowerRequest request) {
         User user = AuthenticatedUserHelper.get();
-        CharacterSkillResponse response = service.save(request, id, characterId, user);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(service.save(characterId, id, request, user));
     }
 }

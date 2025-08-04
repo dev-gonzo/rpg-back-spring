@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @Getter
-public class CombatSkill {
+public class CharacterCombatSkill {
 
     private final CodigoId id;
     private final CodigoId characterId;

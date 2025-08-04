@@ -1,9 +1,9 @@
 package com.rpgsystem.rpg.application.service.character;
 
-import com.rpgsystem.rpg.api.dto.character.CombatSkillRequest;
-import com.rpgsystem.rpg.api.dto.character.CombatSkillResponse;
+import com.rpgsystem.rpg.api.dto.character.CharacterCombatSkillRequest;
+import com.rpgsystem.rpg.api.dto.character.CharacterCombatSkillResponse;
 import com.rpgsystem.rpg.application.builder.CombatSkillDtoBuilder;
-import com.rpgsystem.rpg.domain.character.updater.CombatSkillUpdater;
+import com.rpgsystem.rpg.domain.character.updater.CharacterCombatSkillUpdater;
 import com.rpgsystem.rpg.domain.common.CharacterAccessValidator;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.CombatSkillEntity;
@@ -31,14 +31,14 @@ public class CharacterCombatSkillService {
         return repository.findAllByCharacter_Id(characterId);
     }
 
-    public CombatSkillResponse getSkill(String id, String characterId, User user) {
+    public CharacterCombatSkillResponse getSkill(String id, String characterId, User user) {
         CharacterEntity character = characterService.getById(characterId);
         accessValidator.validateControlAccess(character, user);
 
         return CombatSkillDtoBuilder.from(getById(id));
     }
 
-    public List<CombatSkillResponse> getSkills(String characterId, User user) {
+    public List<CharacterCombatSkillResponse> getSkills(String characterId, User user) {
         CharacterEntity character = characterService.getById(characterId);
         accessValidator.validateControlAccess(character, user);
 
@@ -47,12 +47,12 @@ public class CharacterCombatSkillService {
                 .collect(Collectors.toList());
     }
 
-    public CombatSkillResponse save(CombatSkillRequest request, String id, String characterId, User user) {
+    public CharacterCombatSkillResponse save(CharacterCombatSkillRequest request, String id, String characterId, User user) {
         CharacterEntity character = characterService.getById(characterId);
         accessValidator.validateControlAccess(character, user);
 
         CombatSkillEntity skill = getById(id);
-        new CombatSkillUpdater(request).apply(skill);
+        new CharacterCombatSkillUpdater(request).apply(skill);
 
         CombatSkillEntity saved = repository.save(skill);
         return CombatSkillDtoBuilder.from(saved);

@@ -1,12 +1,12 @@
 package com.rpgsystem.rpg.application.builder;
 
-import com.rpgsystem.rpg.api.dto.character.PathsAndFormsResponse;
+import com.rpgsystem.rpg.api.dto.character.CharacterPathsAndFormsResponse;
 import com.rpgsystem.rpg.domain.entity.PathsAndFormsEntity;
 
-public class PathsAndFormsDtoBuilder {
+public class CharacterPathsAndFormsDtoBuilder {
 
-    public static PathsAndFormsResponse from(PathsAndFormsEntity entity) {
-        return PathsAndFormsResponse.builder()
+    public static CharacterPathsAndFormsResponse from(PathsAndFormsEntity entity) {
+        return CharacterPathsAndFormsResponse.builder()
                 .characterId(entity.getCharacter().getId())
                 .understandForm(entity.getUnderstandForm())
                 .createForm(entity.getCreateForm())

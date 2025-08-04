@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class PathsAndFormsRequest {
+public class CharacterPathsAndFormsRequest {
 
     @NotNull @Min(0) @Max(10)
     private Integer understandForm;

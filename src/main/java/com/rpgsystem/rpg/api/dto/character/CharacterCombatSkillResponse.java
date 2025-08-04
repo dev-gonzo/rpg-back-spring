@@ -7,7 +7,7 @@ import java.time.Instant;
 
 @Getter
 @Builder
-public class SkillResponse {
+public class CharacterCombatSkillResponse {
 
     private String id;
     private String characterId;
@@ -16,8 +16,11 @@ public class SkillResponse {
     private String group;
     private String attribute;
 
-    private Integer cost;
-    private Integer kitValue;
+    private Integer attackCost;
+    private Integer defenseCost;
+
+    private Integer attackKitValue;
+    private Integer defenseKitValue;
 
     private Instant createdAt;
     private Instant updatedAt;

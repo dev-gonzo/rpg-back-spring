@@ -1,13 +1,13 @@
 package com.rpgsystem.rpg.domain.character.updater;
 
-import com.rpgsystem.rpg.domain.character.CharacterInfo;
+import com.rpgsystem.rpg.domain.character.CharacterCharacterInfo;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 
 public class CharacterInfoUpdater implements CharacterEntityUpdater {
 
-    private final CharacterInfo info;
+    private final CharacterCharacterInfo info;
 
-    public CharacterInfoUpdater(CharacterInfo info) {
+    public CharacterInfoUpdater(CharacterCharacterInfo info) {
         this.info = info;
     }
 

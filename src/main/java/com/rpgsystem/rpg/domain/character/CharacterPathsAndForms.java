@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @Getter
-public class PathsAndForms {
+public class CharacterPathsAndForms {
 
     private final CodigoId characterId;
 

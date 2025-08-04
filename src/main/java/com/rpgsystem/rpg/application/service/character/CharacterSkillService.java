@@ -1,9 +1,9 @@
 package com.rpgsystem.rpg.application.service.character;
 
-import com.rpgsystem.rpg.api.dto.character.SkillRequest;
-import com.rpgsystem.rpg.api.dto.character.SkillResponse;
+import com.rpgsystem.rpg.api.dto.character.CharacterSkillRequest;
+import com.rpgsystem.rpg.api.dto.character.CharacterSkillResponse;
 import com.rpgsystem.rpg.application.builder.CharacterSkillDtoBuilder;
-import com.rpgsystem.rpg.domain.character.updater.SkillUpdater;
+import com.rpgsystem.rpg.domain.character.updater.CharacterSkillUpdater;
 import com.rpgsystem.rpg.domain.common.CharacterAccessValidator;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.SkillEntity;
@@ -32,14 +32,14 @@ public class CharacterSkillService {
         return skillRepository.findAllByCharacter_Id(characterId);
     }
 
-    public SkillResponse getSkill(String id, String characterId, User user) {
+    public CharacterSkillResponse getSkill(String id, String characterId, User user) {
         CharacterEntity character = characterService.getById(characterId);
         characterAccessValidator.validateControlAccess(character, user);
 
         return CharacterSkillDtoBuilder.from(this.getById(id));
     }
 
-    public List<SkillResponse> getSkills(String characterId, User user) {
+    public List<CharacterSkillResponse> getSkills(String characterId, User user) {
         CharacterEntity character = characterService.getById(characterId);
         characterAccessValidator.validateControlAccess(character, user);
 
@@ -48,12 +48,12 @@ public class CharacterSkillService {
                 .collect(Collectors.toList());
     }
 
-    public SkillResponse save(SkillRequest request, String id, String characterId, User user) {
+    public CharacterSkillResponse save(CharacterSkillRequest request, String id, String characterId, User user) {
         CharacterEntity character = characterService.getById(characterId);
         characterAccessValidator.validateControlAccess(character, user);
 
         SkillEntity skill = this.getById(id);
-        new SkillUpdater(request).apply(skill);
+        new CharacterSkillUpdater(request).apply(skill);
 
         SkillEntity saved = skillRepository.save(skill);
         return CharacterSkillDtoBuilder.from(saved);

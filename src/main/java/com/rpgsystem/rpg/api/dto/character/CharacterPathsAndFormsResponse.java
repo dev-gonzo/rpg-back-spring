@@ -7,7 +7,7 @@ import java.time.Instant;
 
 @Getter
 @Builder
-public class PathsAndFormsResponse {
+public class CharacterPathsAndFormsResponse {
 
     private String characterId;
 

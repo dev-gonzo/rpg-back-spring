@@ -3,7 +3,7 @@ package com.rpgsystem.rpg.application.service.character;
 import com.rpgsystem.rpg.api.dto.character.CharacterInfoRequest;
 import com.rpgsystem.rpg.api.dto.character.CharacterInfoResponse;
 import com.rpgsystem.rpg.application.builder.CharacterInfoDtoBuilder;
-import com.rpgsystem.rpg.domain.character.CharacterInfo;
+import com.rpgsystem.rpg.domain.character.CharacterCharacterInfo;
 import com.rpgsystem.rpg.domain.common.CodigoId;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.User;
@@ -33,21 +33,21 @@ public class CharacterService {
 
     public CharacterInfoResponse create(CharacterInfoRequest characterInfoRequest, User user) {
 
-        CharacterInfo characterInfo = characterInfoService.createInfoDto(characterInfoRequest);
+        CharacterCharacterInfo characterCharacterInfo = characterInfoService.createInfoDto(characterInfoRequest);
         String id = CodigoId.novo().getValue();
 
         CharacterEntity character = CharacterEntity.builder()
                 .id(id)
-                .name(characterInfo.getName().getValue())
-                .profession(characterInfo.getProfession())
-                .birthDate(characterInfo.getBirthDate())
-                .birthPlace(characterInfo.getBirthPlace())
-                .gender(characterInfo.getGender())
-                .age(characterInfo.getAge())
-                .apparentAge(characterInfo.getApparenteAge())
-                .heightCm(characterInfo.getHeightCm() != null ? characterInfo.getHeightCm().getCentimeters() : null)
-                .weightKg(characterInfo.getWeightKg() != null ? characterInfo.getWeightKg().getKilograms() : null)
-                .religion(characterInfo.getReligion())
+                .name(characterCharacterInfo.getName().getValue())
+                .profession(characterCharacterInfo.getProfession())
+                .birthDate(characterCharacterInfo.getBirthDate())
+                .birthPlace(characterCharacterInfo.getBirthPlace())
+                .gender(characterCharacterInfo.getGender())
+                .age(characterCharacterInfo.getAge())
+                .apparentAge(characterCharacterInfo.getApparenteAge())
+                .heightCm(characterCharacterInfo.getHeightCm() != null ? characterCharacterInfo.getHeightCm().getCentimeters() : null)
+                .weightKg(characterCharacterInfo.getWeightKg() != null ? characterCharacterInfo.getWeightKg().getKilograms() : null)
+                .religion(characterCharacterInfo.getReligion())
                 .isKnown(false)
                 .edit(true)
                 .controlUser(user.isMaster() ? null : user)

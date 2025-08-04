@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class SkillRequest {
+public class CharacterSkillRequest {
 
     @NotBlank(message = "Skill name is required")
     private String skill;

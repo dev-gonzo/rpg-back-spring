@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @Getter
-public class CharacterInfo {
+public class CharacterCharacterInfo {
 
     private final CodigoId characterId;
     private final CharacterName name;

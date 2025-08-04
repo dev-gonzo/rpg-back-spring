@@ -1,7 +1,7 @@
 package com.rpgsystem.rpg.api.controller.character;
 
-import com.rpgsystem.rpg.api.dto.character.PathsAndFormsRequest;
-import com.rpgsystem.rpg.api.dto.character.PathsAndFormsResponse;
+import com.rpgsystem.rpg.api.dto.character.CharacterPathsAndFormsRequest;
+import com.rpgsystem.rpg.api.dto.character.CharacterPathsAndFormsResponse;
 import com.rpgsystem.rpg.application.service.character.CharacterPathsAndFormsService;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.infrastructure.security.annotation.RequireAuthUser;
@@ -20,16 +20,16 @@ public class CharacterMagicPathsAndForms {
 
     @GetMapping
     @RequireAuthUser
-    public ResponseEntity<PathsAndFormsResponse> get(@PathVariable String characterId) {
+    public ResponseEntity<CharacterPathsAndFormsResponse> get(@PathVariable String characterId) {
         User user = AuthenticatedUserHelper.get();
         return ResponseEntity.ok(service.get(characterId, user));
     }
 
     @PostMapping
     @RequireAuthUser
-    public ResponseEntity<PathsAndFormsResponse> save(
+    public ResponseEntity<CharacterPathsAndFormsResponse> save(
             @PathVariable String characterId,
-            @Valid @RequestBody PathsAndFormsRequest request) {
+            @Valid @RequestBody CharacterPathsAndFormsRequest request) {
         User user = AuthenticatedUserHelper.get();
         return ResponseEntity.ok(service.save(characterId, request, user));
     }
