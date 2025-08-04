@@ -1,6 +1,6 @@
 package com.rpgsystem.rpg.domain.entity;
 
-import com.rpgsystem.rpg.domain.enums.Role;
+import com.rpgsystem.rpg.domain.enums.RoleEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -56,8 +56,8 @@ public class User implements UserDetails {
 
 
     @Transient
-    public Role getRole() {
-        return isMaster ? Role.MASTER : Role.PLAYER;
+    public RoleEnum getRole() {
+        return isMaster ? RoleEnum.MASTER : RoleEnum.PLAYER;
     }
 
     @Override public boolean isAccountNonExpired() { return true; }

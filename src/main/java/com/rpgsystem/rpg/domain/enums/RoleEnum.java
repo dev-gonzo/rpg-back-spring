@@ -1,6 +1,6 @@
 package com.rpgsystem.rpg.domain.enums;
 
-public enum Role {
+public enum RoleEnum {
     MASTER,
     PLAYER
 }
