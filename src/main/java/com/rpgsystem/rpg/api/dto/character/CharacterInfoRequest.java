@@ -4,32 +4,38 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.time.LocalDate;
 
-public record CharacterInfoRequest(
-        @NotBlank(message = "Name is required")
-        String name,
+@Getter
+@Builder
+public class CharacterInfoRequest {
 
-        String profession,
+        @NotBlank(message = "Name is required")
+        private String name;
+
+        private String profession;
 
         @NotNull(message = "Birth date is required")
-        LocalDate birthDate,
+        private LocalDate birthDate;
 
-        String birthPlace,
-        String gender,
+        private String birthPlace;
+        private String gender;
 
         @Min(value = 0, message = "Age must be a positive number")
-        Integer age,
+        private Integer age;
 
         @Min(value = 0, message = "Apparent age must be a positive number")
-        Integer apparentAge,
+        private Integer apparentAge;
 
         @Positive(message = "Height must be greater than 0")
-        Integer heightCm,
+        private Integer heightCm;
 
         @Positive(message = "Weight must be greater than 0")
-        Integer weightKg,
+        private Integer weightKg;
 
-        String religion
-) {}
+        private String religion;
+}
+

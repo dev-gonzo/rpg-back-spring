@@ -3,7 +3,7 @@ package com.rpgsystem.rpg.application.service.character;
 import com.rpgsystem.rpg.application.builder.CharacterHomeDtoBuilder;
 import com.rpgsystem.rpg.api.dto.character.CharacterHomeDto;
 import com.rpgsystem.rpg.domain.entity.User;
-import com.rpgsystem.rpg.domain.repository.CharacterRepository;
+import com.rpgsystem.rpg.domain.repository.character.CharacterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/characters/{id}/info")
+@RequestMapping("/characters/{characterId}/info")
 @RequiredArgsConstructor
 public class CharacterInfoController {
 
@@ -20,18 +20,21 @@ public class CharacterInfoController {
 
     @GetMapping
     @RequireAuthUser
-    public ResponseEntity<CharacterInfoResponse> getInfo(@PathVariable String id) {
-        return ResponseEntity.ok(service.getInfo(id));
+    public ResponseEntity<CharacterInfoResponse> getInfo(
+            @PathVariable String characterId) {
+
+        return ResponseEntity.ok(service.getInfo(characterId));
     }
 
     @PostMapping
     @RequireAuthUser
     public ResponseEntity<CharacterInfoResponse> save(
-            @PathVariable String id,
-           @Valid @RequestBody CharacterInfoRequest request
+            @PathVariable String characterId,
+            @Valid @RequestBody CharacterInfoRequest request
     ) {
+
         User user = AuthenticatedUserHelper.get();
-        CharacterInfoResponse characterInfoResponse = service.save(request, id, user);
+        CharacterInfoResponse characterInfoResponse = service.save(request, characterId, user);
 
         return ResponseEntity.ok(characterInfoResponse);
     }

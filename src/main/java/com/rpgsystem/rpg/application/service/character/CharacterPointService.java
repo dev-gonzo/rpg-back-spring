@@ -7,11 +7,11 @@ import com.rpgsystem.rpg.domain.character.updater.CharacterCurrentPatchPointsUpd
 import com.rpgsystem.rpg.domain.character.updater.CharacterCurrentPointsUpdater;
 import com.rpgsystem.rpg.domain.character.updater.CharacterPointsUpdater;
 import com.rpgsystem.rpg.domain.character.valueObject.Point;
+import com.rpgsystem.rpg.domain.common.CharacterAccessValidator;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.domain.exception.UnauthorizedActionException;
-import com.rpgsystem.rpg.domain.repository.CharacterRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.rpgsystem.rpg.domain.repository.character.CharacterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,22 +20,13 @@ import org.springframework.stereotype.Service;
 public class CharacterPointService {
 
     private final CharacterRepository repository;
+    private final CharacterAccessValidator characterAccessValidator;
+    private final CharacterService characterService;
 
-    private CharacterEntity getById(String id) {
-
-        CharacterEntity characterEntity = repository.findById(id).orElse(null);
-
-        if (characterEntity == null) {
-            throw new EntityNotFoundException(id);
-        }
-
-        return characterEntity;
-
-    }
 
     public CharacterPointsResponse getInfo(String id) {
 
-        return CharacterPointsDtoBuilder.from(this.getById(id));
+        return CharacterPointsDtoBuilder.from(characterService.getById(id));
 
     }
 
@@ -73,8 +64,8 @@ public class CharacterPointService {
         return getCharacterPointsResponse(id, user, this.createPointsDto(request), true);
     }
 
-    public CharacterPointsResponse saveCurrentPatch(CharacterCurrentPointsRequest request, String id, User user) {
-        CharacterEntity characterEntity = this.getById(id);
+    public CharacterPointsResponse saveCurrentAdjust(CharacterCurrentPointsRequest request, String id, User user) {
+        CharacterEntity characterEntity = characterService.getById(id);
 
         if (!characterEntity.getControlUser().equals(user) && !user.isMaster()) {
             throw new UnauthorizedActionException("Action not performed, user without permission");
@@ -90,11 +81,9 @@ public class CharacterPointService {
 
 
     private CharacterPointsResponse getCharacterPointsResponse(String id, User user, CharacterPoints pointsDto, boolean isCurrent) {
-        CharacterEntity characterEntity = this.getById(id);
+        CharacterEntity characterEntity = characterService.getById(id);
 
-        if (!characterEntity.getControlUser().equals(user) && !user.isMaster()) {
-            throw new UnauthorizedActionException("Action not performed, user without permission");
-        }
+        characterAccessValidator.validateControlAccess(characterEntity, user);
 
         if (isCurrent) {
             new CharacterCurrentPointsUpdater(pointsDto).apply(characterEntity);

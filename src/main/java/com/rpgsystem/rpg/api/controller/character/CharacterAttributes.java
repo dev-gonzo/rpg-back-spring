@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/characters/{id}/attributes")
+@RequestMapping("/characters/{characterId}/attributes")
 @RequiredArgsConstructor
 public class CharacterAttributes {
 
@@ -21,18 +21,22 @@ public class CharacterAttributes {
 
     @GetMapping
     @RequireAuthUser
-    public ResponseEntity<CharacterAttributeResponse> getInfo(@PathVariable String id) {
-        return ResponseEntity.ok(service.getCharacterAttributes(id));
+    public ResponseEntity<CharacterAttributeResponse> getAttributes(
+            @PathVariable String characterId) {
+
+        User user = AuthenticatedUserHelper.get();
+        return ResponseEntity.ok(service.getCharacterAttributes(characterId, user));
     }
 
     @PostMapping
     @RequireAuthUser
     public ResponseEntity<CharacterAttributeResponse> save(
-            @PathVariable String id,
+            @PathVariable String characterId,
             @Valid @RequestBody CharacterAttributeRequest request
     ) {
+
         User user = AuthenticatedUserHelper.get();
-        CharacterAttributeResponse characterAttributeResponse = service.save(request, id, user);
+        CharacterAttributeResponse characterAttributeResponse = service.save(request, characterId, user);
 
         return ResponseEntity.ok(characterAttributeResponse);
     }
@@ -40,11 +44,12 @@ public class CharacterAttributes {
     @PostMapping("/mod")
     @RequireAuthUser
     public ResponseEntity<CharacterAttributeResponse> saveMod(
-            @PathVariable String id,
+            @PathVariable String characterId,
             @Valid @RequestBody CharacterAttributeModRequest request
     ) {
+        
         User user = AuthenticatedUserHelper.get();
-        CharacterAttributeResponse characterAttributeResponse = service.saveMod(request, id, user);
+        CharacterAttributeResponse characterAttributeResponse = service.saveMod(request, characterId, user);
 
         return ResponseEntity.ok(characterAttributeResponse);
     }

@@ -10,8 +10,8 @@ import com.rpgsystem.rpg.domain.common.CharacterAccessValidator;
 import com.rpgsystem.rpg.domain.entity.AttributeEntity;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.User;
-import com.rpgsystem.rpg.domain.repository.AttributeRepository;
-import com.rpgsystem.rpg.domain.repository.CharacterRepository;
+import com.rpgsystem.rpg.domain.repository.character.AttributeRepository;
+import com.rpgsystem.rpg.domain.repository.character.CharacterRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,7 @@ public class CharacterAttributesService {
     private final AttributeRepository attributeRepository;
     private final CharacterRepository characterRepository;
     private final CharacterAccessValidator characterAccessValidator;
+    private final CharacterService characterService;
 
 
     private AttributeEntity getOrCreateAttributeEntity(String characterId) {
@@ -41,7 +42,11 @@ public class CharacterAttributesService {
         return attributeEntity;
     }
 
-    public CharacterAttributeResponse getCharacterAttributes(String characterId) {
+    public CharacterAttributeResponse getCharacterAttributes(String characterId, User user) {
+        CharacterEntity characterEntity = characterService.getById(characterId);
+
+        characterAccessValidator.validateControlAccess(characterEntity, user);
+
         AttributeEntity attributeEntity = attributeRepository.findByCharacter_Id(characterId).orElse(null);
 
         if (attributeEntity == null) {
@@ -52,9 +57,11 @@ public class CharacterAttributesService {
     }
 
     public CharacterAttributeResponse save(CharacterAttributeRequest request, String characterId, User user) {
-        AttributeEntity attributeEntity = this.getOrCreateAttributeEntity(characterId);
+        CharacterEntity characterEntity = characterService.getById(characterId);
 
-        characterAccessValidator.validateControlAccess(attributeEntity.getCharacter(), user);
+        characterAccessValidator.validateControlAccess(characterEntity, user);
+
+        AttributeEntity attributeEntity = this.getOrCreateAttributeEntity(characterId);
 
         new CharacterAttributesUpdater(request).apply(attributeEntity);
 
@@ -65,6 +72,10 @@ public class CharacterAttributesService {
 
 
     public CharacterAttributeResponse saveMod(CharacterAttributeModRequest request, String characterId, User user) {
+        CharacterEntity characterEntity = characterService.getById(characterId);
+
+        characterAccessValidator.validateControlAccess(characterEntity, user);
+
         AttributeEntity attributeEntity = this.getOrCreateAttributeEntity(characterId);
 
         characterAccessValidator.validateControlAccess(attributeEntity.getCharacter(), user);

@@ -1,4 +1,4 @@
-package com.rpgsystem.rpg.domain.repository;
+package com.rpgsystem.rpg.domain.repository.character;
 
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.User;

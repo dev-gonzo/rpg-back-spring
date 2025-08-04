@@ -7,7 +7,8 @@ import com.rpgsystem.rpg.domain.character.CharacterInfo;
 import com.rpgsystem.rpg.domain.common.CodigoId;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.User;
-import com.rpgsystem.rpg.domain.repository.CharacterRepository;
+import com.rpgsystem.rpg.domain.repository.character.CharacterRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,18 @@ public class CharacterService {
 
     private final CharacterInfoService characterInfoService;
     private final CharacterRepository repository;
+
+    public CharacterEntity getById(String id) {
+
+        CharacterEntity characterEntity = repository.findById(id).orElse(null);
+
+        if (characterEntity == null) {
+            throw new EntityNotFoundException(id);
+        }
+
+        return characterEntity;
+
+    }
 
     public CharacterInfoResponse create(CharacterInfoRequest characterInfoRequest, User user) {
 

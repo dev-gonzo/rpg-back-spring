@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/characters/{id}/points")
+@RequestMapping("/characters/{characterId}/points")
 @RequiredArgsConstructor
 public class CharacterPointsController {
 
@@ -21,18 +21,21 @@ public class CharacterPointsController {
 
     @GetMapping
     @RequireAuthUser
-    public ResponseEntity<CharacterPointsResponse> getInfo(@PathVariable String id) {
-        return ResponseEntity.ok(service.getInfo(id));
+    public ResponseEntity<CharacterPointsResponse> getInfo(
+            @PathVariable String characterId) {
+
+        return ResponseEntity.ok(service.getInfo(characterId));
     }
 
     @PostMapping
     @RequireAuthUser
     public ResponseEntity<CharacterPointsResponse> save(
-            @PathVariable String id,
-           @Valid @RequestBody CharacterPointsRequest request
+            @PathVariable String characterId,
+            @Valid @RequestBody CharacterPointsRequest request
     ) {
+
         User user = AuthenticatedUserHelper.get();
-        CharacterPointsResponse characterInfoResponse = service.save(request, id, user);
+        CharacterPointsResponse characterInfoResponse = service.save(request, characterId, user);
 
         return ResponseEntity.ok(characterInfoResponse);
     }
@@ -40,23 +43,25 @@ public class CharacterPointsController {
     @PostMapping("/current")
     @RequireAuthUser
     public ResponseEntity<CharacterPointsResponse> saveCurrent(
-            @PathVariable String id,
-           @Valid @RequestBody CharacterCurrentPointsRequest request
+            @PathVariable String characterId,
+            @Valid @RequestBody CharacterCurrentPointsRequest request
     ) {
+
         User user = AuthenticatedUserHelper.get();
-        CharacterPointsResponse characterInfoResponse = service.saveCurrentPatch(request, id, user);
+        CharacterPointsResponse characterInfoResponse = service.saveCurrentAdjust(request, characterId, user);
 
         return ResponseEntity.ok(characterInfoResponse);
     }
 
-    @PostMapping("/current/patch")
+    @PostMapping("/current/adjust")
     @RequireAuthUser
-    public ResponseEntity<CharacterPointsResponse> saveCurrentPatch(
-            @PathVariable String id,
-           @Valid @RequestBody CharacterCurrentPointsRequest request
+    public ResponseEntity<CharacterPointsResponse> saveCurrentAdjust(
+            @PathVariable String characterId,
+            @Valid @RequestBody CharacterCurrentPointsRequest request
     ) {
+
         User user = AuthenticatedUserHelper.get();
-        CharacterPointsResponse characterInfoResponse = service.saveCurrentPatch(request, id, user);
+        CharacterPointsResponse characterInfoResponse = service.saveCurrentAdjust(request, characterId, user);
 
         return ResponseEntity.ok(characterInfoResponse);
     }
