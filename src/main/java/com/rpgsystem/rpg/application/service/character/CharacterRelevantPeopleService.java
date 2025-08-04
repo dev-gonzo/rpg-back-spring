@@ -6,7 +6,7 @@ import com.rpgsystem.rpg.application.builder.CharacterRelevantPeopleDtoBuilder;
 import com.rpgsystem.rpg.domain.character.updater.CharacterRelevantPeopleUpdater;
 import com.rpgsystem.rpg.domain.common.CharacterAccessValidator;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
-import com.rpgsystem.rpg.domain.entity.CharacterRelevantPeopleEntity;
+import com.rpgsystem.rpg.domain.entity.RelevantPeopleEntity;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.domain.repository.character.RelevantPeopleRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -24,7 +24,7 @@ public class CharacterRelevantPeopleService {
     private final CharacterService characterService;
     private final CharacterAccessValidator accessValidator;
 
-    private CharacterRelevantPeopleEntity getById(String id) {
+    private RelevantPeopleEntity getById(String id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
     }
 
@@ -48,10 +48,10 @@ public class CharacterRelevantPeopleService {
         CharacterEntity character = characterService.getById(characterId);
         accessValidator.validateControlAccess(character, user);
 
-        CharacterRelevantPeopleEntity entity = getById(id);
+        RelevantPeopleEntity entity = getById(id);
         new CharacterRelevantPeopleUpdater(request).apply(entity);
 
-        CharacterRelevantPeopleEntity saved = repository.save(entity);
+        RelevantPeopleEntity saved = repository.save(entity);
         return CharacterRelevantPeopleDtoBuilder.from(saved);
     }
 }

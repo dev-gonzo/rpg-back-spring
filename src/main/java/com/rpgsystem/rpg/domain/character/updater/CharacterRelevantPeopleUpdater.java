@@ -2,7 +2,7 @@ package com.rpgsystem.rpg.domain.character.updater;
 
 import com.rpgsystem.rpg.api.dto.character.CharacterRelevantPeopleRequest;
 import com.rpgsystem.rpg.domain.common.Name;
-import com.rpgsystem.rpg.domain.entity.CharacterRelevantPeopleEntity;
+import com.rpgsystem.rpg.domain.entity.RelevantPeopleEntity;
 
 public class CharacterRelevantPeopleUpdater {
 
@@ -12,7 +12,7 @@ public class CharacterRelevantPeopleUpdater {
         this.request = request;
     }
 
-    public void apply(CharacterRelevantPeopleEntity entity) {
+    public void apply(RelevantPeopleEntity entity) {
         if (request == null || entity == null) return;
 
         entity.setCategory(request.getCategory());

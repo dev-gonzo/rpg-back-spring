@@ -1,11 +1,11 @@
 package com.rpgsystem.rpg.application.builder;
 
 import com.rpgsystem.rpg.api.dto.character.CharacterRelevantPeopleResponse;
-import com.rpgsystem.rpg.domain.entity.CharacterRelevantPeopleEntity;
+import com.rpgsystem.rpg.domain.entity.RelevantPeopleEntity;
 
 public class CharacterRelevantPeopleDtoBuilder {
 
-    public static CharacterRelevantPeopleResponse from(CharacterRelevantPeopleEntity entity) {
+    public static CharacterRelevantPeopleResponse from(RelevantPeopleEntity entity) {
         return CharacterRelevantPeopleResponse.builder()
                 .id(entity.getId())
                 .characterId(entity.getCharacter().getId())
