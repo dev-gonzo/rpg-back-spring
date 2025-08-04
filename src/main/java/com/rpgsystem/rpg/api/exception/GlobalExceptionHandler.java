@@ -3,6 +3,7 @@ package com.rpgsystem.rpg.api.exception;
 import com.fasterxml.jackson.core.exc.InputCoercionException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.rpgsystem.rpg.domain.exception.DomainException;
+import com.rpgsystem.rpg.domain.exception.ImageProcessingException;
 import com.rpgsystem.rpg.domain.exception.InvalidCredentialsException;
 import com.rpgsystem.rpg.domain.exception.UnauthorizedActionException;
 import jakarta.persistence.EntityNotFoundException;
@@ -109,6 +110,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .badRequest()
                 .body(ErrorResponse.of("Domain Error", ex.getMessage()));
+    }
+
+    @ExceptionHandler(ImageProcessingException.class)
+    public ResponseEntity<ErrorResponse> handleImageProcessing(ImageProcessingException ex) {
+        return ResponseEntity
+                .badRequest()
+                .body(ErrorResponse.of("Image Error", ex.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)

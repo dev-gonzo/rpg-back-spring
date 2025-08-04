@@ -10,10 +10,8 @@ import com.rpgsystem.rpg.infrastructure.security.util.AuthenticatedUserHelper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/characters")
@@ -31,6 +29,17 @@ public class CharacterController {
     ) {
         User user = AuthenticatedUserHelper.get();
         return ResponseEntity.ok(characterService.create(request, user));
+    }
+
+    @PostMapping("/{characterId}/upload-photo")
+    @RequireAuthUser
+    public ResponseEntity<Void> uploadPhoto(
+            @PathVariable String characterId,
+            @RequestParam("file") MultipartFile file
+    ) {
+        User user = AuthenticatedUserHelper.get();
+        characterService.uploadImage(characterId, file, user);
+        return ResponseEntity.ok().build();
     }
 
 }

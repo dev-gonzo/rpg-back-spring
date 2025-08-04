@@ -3,7 +3,9 @@ package com.rpgsystem.rpg.application.service.character;
 import com.rpgsystem.rpg.api.dto.character.CharacterInfoRequest;
 import com.rpgsystem.rpg.api.dto.character.CharacterInfoResponse;
 import com.rpgsystem.rpg.application.builder.CharacterInfoDtoBuilder;
+import com.rpgsystem.rpg.application.service.shared.ImageService;
 import com.rpgsystem.rpg.domain.character.CharacterCharacterInfo;
+import com.rpgsystem.rpg.domain.common.CharacterAccessValidator;
 import com.rpgsystem.rpg.domain.common.CodigoId;
 import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 import com.rpgsystem.rpg.domain.entity.User;
@@ -11,6 +13,7 @@ import com.rpgsystem.rpg.domain.repository.character.CharacterRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +21,8 @@ public class CharacterService {
 
     private final CharacterInfoService characterInfoService;
     private final CharacterRepository repository;
+    private final ImageService imageService;
+    private final CharacterAccessValidator characterAccessValidator;
 
     public CharacterEntity getById(String id) {
 
@@ -57,6 +62,17 @@ public class CharacterService {
         repository.save(character);
 
         return CharacterInfoDtoBuilder.from(character);
+    }
+
+
+    public void uploadImage(String characterId, MultipartFile file, User user) {
+        CharacterEntity character = getById(characterId);
+
+        characterAccessValidator.validateControlAccess(character, user);
+
+        String base64Image = imageService.processToBase64(file);
+        character.setImage(base64Image);
+        repository.save(character);
     }
 
 }
