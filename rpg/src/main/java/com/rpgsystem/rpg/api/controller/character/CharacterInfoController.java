@@ -2,7 +2,7 @@ package com.rpgsystem.rpg.api.controller.character;
 
 import com.rpgsystem.rpg.api.dto.character.CharacterInfoRequest;
 import com.rpgsystem.rpg.api.dto.character.CharacterInfoResponse;
-import com.rpgsystem.rpg.application.service.character.CharacterInfoService;
+import com.rpgsystem.rpg.application.service.character.CharacterService;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.infrastructure.security.annotation.RequireAuthUser;
 import com.rpgsystem.rpg.infrastructure.security.util.AuthenticatedUserHelper;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CharacterInfoController {
 
-    private final CharacterInfoService service;
+    private final CharacterService service;
 
     @GetMapping
     @RequireAuthUser

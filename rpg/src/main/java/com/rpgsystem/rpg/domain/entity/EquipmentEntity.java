@@ -8,13 +8,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"CharacterBackground\"")
+@Table(name = "\"Equipment\"")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BackgroundEntity {
+public class EquipmentEntity {
 
     @Id
     private String id;
@@ -24,13 +24,34 @@ public class BackgroundEntity {
     private CharacterEntity character;
 
     @Column(nullable = false)
-    private String title;
+    private String name;
 
     @Column(nullable = false)
-    private String text;
+    private Integer quantity;
 
-    @Column(name = "\"isPublic\"", nullable = false)
-    private boolean isPublic;
+    @Column(nullable = false)
+    private String classification;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(name = "\"kineticProtection\"")
+    private Integer kineticProtection;
+
+    @Column(name = "\"ballisticProtection\"")
+    private Integer ballisticProtection;
+
+    @Column(name = "\"dexterityPenalty\"")
+    private Integer dexterityPenalty;
+
+    @Column(name = "\"agilityPenalty\"")
+    private Integer agilityPenalty;
+
+    @Column
+    private Integer initiative;
+
+    @Column(name = "\"bookPage\"")
+    private String bookPage;
 
     @CreationTimestamp
     @Column(name = "\"createdAt\"", nullable = false, updatable = false)

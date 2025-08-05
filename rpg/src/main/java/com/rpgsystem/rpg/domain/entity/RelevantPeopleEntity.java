@@ -38,7 +38,7 @@ public class RelevantPeopleEntity {
     @Column
     private String profession;
 
-    @Column(name = "\"briefDescription\"")
+    @Column(name = "\"briefDescription\"", columnDefinition = "TEXT")
     private String briefDescription;
 
     @CreationTimestamp

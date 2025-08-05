@@ -8,13 +8,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"Equipment\"")
+@Table(name = "\"Note\"")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EquipmentEntity {
+public class NoteEntity {
 
     @Id
     private String id;
@@ -23,35 +23,8 @@ public class EquipmentEntity {
     @JoinColumn(name = "\"characterId\"", referencedColumnName = "id", nullable = false)
     private CharacterEntity character;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private Integer quantity;
-
-    @Column(nullable = false)
-    private String classification;
-
-    @Column
-    private String description;
-
-    @Column(name = "\"kineticProtection\"")
-    private Integer kineticProtection;
-
-    @Column(name = "\"ballisticProtection\"")
-    private Integer ballisticProtection;
-
-    @Column(name = "\"dexterityPenalty\"")
-    private Integer dexterityPenalty;
-
-    @Column(name = "\"agilityPenalty\"")
-    private Integer agilityPenalty;
-
-    @Column
-    private Integer initiative;
-
-    @Column(name = "\"bookPage\"")
-    private String bookPage;
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String note;
 
     @CreationTimestamp
     @Column(name = "\"createdAt\"", nullable = false, updatable = false)
