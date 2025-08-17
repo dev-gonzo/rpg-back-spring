@@ -4,8 +4,8 @@ import com.rpgsystem.rpg.api.dto.character.CharacterNoteRequest;
 import com.rpgsystem.rpg.api.dto.character.CharacterNoteResponse;
 import com.rpgsystem.rpg.application.service.character.CharacterNoteService;
 import com.rpgsystem.rpg.domain.entity.User;
+import com.rpgsystem.rpg.infrastructure.security.AuthenticatedUserProvider;
 import com.rpgsystem.rpg.infrastructure.security.annotation.RequireAuthUser;
-import com.rpgsystem.rpg.infrastructure.security.util.AuthenticatedUserHelper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +19,12 @@ import java.util.List;
 public class CharacterNotes {
 
     private final CharacterNoteService service;
+    private final AuthenticatedUserProvider authenticatedUserProvider;
 
     @GetMapping
     @RequireAuthUser
     public ResponseEntity<List<CharacterNoteResponse>> getAll(@PathVariable String characterId) {
-        User user = AuthenticatedUserHelper.get();
+        User user = authenticatedUserProvider.getAuthenticatedUser();
         return ResponseEntity.ok(service.getAll(characterId, user));
     }
 
@@ -32,7 +33,7 @@ public class CharacterNotes {
     public ResponseEntity<CharacterNoteResponse> get(
             @PathVariable String characterId,
             @PathVariable String id) {
-        User user = AuthenticatedUserHelper.get();
+        User user = authenticatedUserProvider.getAuthenticatedUser();
         return ResponseEntity.ok(service.get(characterId, id, user));
     }
 
@@ -42,7 +43,7 @@ public class CharacterNotes {
             @PathVariable String characterId,
             @PathVariable String id,
             @Valid @RequestBody CharacterNoteRequest request) {
-        User user = AuthenticatedUserHelper.get();
+        User user = authenticatedUserProvider.getAuthenticatedUser();
         return ResponseEntity.ok(service.save(characterId, id, request, user));
     }
 }

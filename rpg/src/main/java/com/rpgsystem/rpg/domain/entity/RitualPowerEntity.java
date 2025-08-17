@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"Ritual\"")
+@Table(name = "tb_ritual_powers")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,26 +20,26 @@ public class RitualPowerEntity {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "\"characterId\"", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "character_id", referencedColumnName = "id", nullable = false)
     private CharacterEntity character;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "\"pathsForms\"", nullable = false)
+    @Column(name = "paths_forms", nullable = false)
     private String pathsForms;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "\"bookPage\"", nullable = false)
+    @Column(name = "book_page", nullable = false)
     private String bookPage;
 
     @CreationTimestamp
-    @Column(name = "\"createdAt\"", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
-    @Column(name = "\"updatedAt\"", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 }

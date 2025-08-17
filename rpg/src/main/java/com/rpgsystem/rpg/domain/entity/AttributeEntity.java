@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"Attribute\"")
+@Table(name = "tb_attributes")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,31 +20,31 @@ public class AttributeEntity {
     private String id;
 
     @OneToOne
-    @JoinColumn(name = "\"characterId\"", referencedColumnName = "id", nullable = false, unique = true)
+    @JoinColumn(name = "character_id", referencedColumnName = "id", nullable = false, unique = true)
     private CharacterEntity character;
 
-    @Column(name = "\"CON\"", nullable = false)
+    @Column(name = "con", nullable = false)
     private Integer con;
 
-    @Column(name = "\"FR\"", nullable = false)
+    @Column(name = "fr", nullable = false)
     private Integer fr;
 
-    @Column(name = "\"DEX\"", nullable = false)
+    @Column(name = "dex", nullable = false)
     private Integer dex;
 
-    @Column(name = "\"AGI\"", nullable = false)
+    @Column(name = "agi", nullable = false)
     private Integer agi;
 
-    @Column(name = "\"INT\"", nullable = false)
+    @Column(name = "int", nullable = false)
     private Integer intel;
 
-    @Column(name = "\"WILL\"", nullable = false)
+    @Column(name = "will", nullable = false)
     private Integer will;
 
-    @Column(name = "\"PER\"", nullable = false)
+    @Column(name = "per", nullable = false)
     private Integer per;
 
-    @Column(name = "\"CAR\"", nullable = false)
+    @Column(name = "car", nullable = false)
     private Integer car;
 
     @Column(name = "con_mod")
@@ -72,10 +72,10 @@ public class AttributeEntity {
     private Integer carMod;
 
     @CreationTimestamp
-    @Column(name = "\"createdAt\"", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
-    @Column(name = "\"updatedAt\"", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 }

@@ -16,7 +16,8 @@ public class CharacterRelevantPeopleUpdater {
         if (request == null || entity == null) return;
 
         entity.setCategory(request.getCategory());
-        entity.setName(Name.of(request.getName()).getValue());
+        Name name = Name.of(request.getName());
+        entity.setName(name != null ? name.getValue() : null);
         entity.setApparentAge(request.getApparentAge());
         entity.setCity(request.getCity());
         entity.setProfession(request.getProfession());

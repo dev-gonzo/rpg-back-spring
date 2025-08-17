@@ -5,19 +5,23 @@ import com.rpgsystem.rpg.domain.entity.CombatSkillEntity;
 
 public class CombatSkillDtoBuilder {
 
-    public static CharacterCombatSkillResponse from(CombatSkillEntity entity) {
+    private CombatSkillDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
+    public static CharacterCombatSkillResponse build(CombatSkillEntity combatSkillEntity) {
         return CharacterCombatSkillResponse.builder()
-                .id(entity.getId())
-                .characterId(entity.getCharacter().getId())
-                .skill(entity.getSkill())
-                .group(entity.getGroup())
-                .attribute(entity.getAttribute())
-                .attackCost(entity.getAttackCost())
-                .defenseCost(entity.getDefenseCost())
-                .attackKitValue(entity.getAttackKitValue())
-                .defenseKitValue(entity.getDefenseKitValue())
-                .createdAt(entity.getCreatedAt())
-                .updatedAt(entity.getUpdatedAt())
+                .id(combatSkillEntity.getId())
+                .characterId(combatSkillEntity.getCharacter().getId())
+                .skill(combatSkillEntity.getName())
+                .group(null) // Campo não existe na entidade
+                .attribute(null) // Campo não existe na entidade
+                .attackCost(null) // Campo não existe na entidade
+                .defenseCost(null) // Campo não existe na entidade
+                .attackKitValue(null) // Campo não existe na entidade
+                .defenseKitValue(null) // Campo não existe na entidade
+                .createdAt(combatSkillEntity.getCreatedAt())
+                .updatedAt(combatSkillEntity.getUpdatedAt())
                 .build();
     }
 }

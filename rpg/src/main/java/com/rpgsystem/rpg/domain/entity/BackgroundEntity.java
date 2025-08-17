@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"CharacterBackground\"")
+@Table(name = "tb_character_backgrounds")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +20,7 @@ public class BackgroundEntity {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "\"characterId\"", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "character_id", referencedColumnName = "id", nullable = false)
     private CharacterEntity character;
 
     @Column(nullable = false)
@@ -29,14 +29,14 @@ public class BackgroundEntity {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String text;
 
-    @Column(name = "\"isPublic\"", nullable = false)
+    @Column(name = "is_public", nullable = false)
     private boolean isPublic;
 
     @CreationTimestamp
-    @Column(name = "\"createdAt\"", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
-    @Column(name = "\"updatedAt\"", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 }

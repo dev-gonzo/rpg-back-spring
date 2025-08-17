@@ -17,10 +17,8 @@ public class CharacterSkillUpdater {
     public void apply(SkillEntity entity) {
         if (request == null || entity == null) return;
 
-        entity.setSkill(Name.of(request.getSkill()).getValue());
-        entity.setGroup(request.getGroup());
-        entity.setAttribute(AttributeLabel.of(request.getAttribute()).getValue().name());
-        entity.setCost(Cost.of(request.getCost()).getValue());
-        entity.setKitValue(Cost.of(request.getKitValue()).getValue());
+        entity.setName(Name.of(request.getSkill()).getValue());
+        entity.setSkillValue(0); // Default value since skillValue is not in request
+        entity.setBookPage(null); // Default value since bookPage is not in request
     }
 }

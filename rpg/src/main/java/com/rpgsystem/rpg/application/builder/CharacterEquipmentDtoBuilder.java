@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.EquipmentEntity;
 
 public class CharacterEquipmentDtoBuilder {
 
+    private CharacterEquipmentDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class cannot be instantiated");
+    }
+
     public static CharacterEquipmentResponse from(EquipmentEntity entity) {
         return CharacterEquipmentResponse.builder()
                 .id(entity.getId())

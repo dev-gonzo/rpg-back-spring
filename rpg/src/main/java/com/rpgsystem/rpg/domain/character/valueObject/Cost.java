@@ -27,7 +27,7 @@ public class Cost {
     public static Cost from(String value) {
         if (value == null || value.isBlank()) return null;
         try {
-            return new Cost(Integer.parseInt(value));
+            return new Cost(Integer.parseInt(value.trim()));
         } catch (NumberFormatException ex) {
             throw new DomainException("Cost must be a valid number.");
         }

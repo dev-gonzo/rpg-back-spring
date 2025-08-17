@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.BackgroundEntity;
 
 public class CharacterBackgroundDtoBuilder {
 
+    private CharacterBackgroundDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class cannot be instantiated");
+    }
+
     public static CharacterBackgroundResponse from(BackgroundEntity entity) {
         return CharacterBackgroundResponse.builder()
                 .id(entity.getId())

@@ -25,7 +25,11 @@ public class CharacterHomeController {
     @GetMapping
     @RequireAuthUser
     public ResponseEntity<List<CharacterHomeDto>> listAll() {
-        User user = AuthenticatedUserHelper.get();
+        User user = userProvider.getAuthenticatedUser();
+        
+        if (user == null) {
+            return ResponseEntity.status(401).build();
+        }
 
         return ResponseEntity.ok(service.listByUser(user));
     }

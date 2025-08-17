@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.User;
 
 public class UserSimpleDtoBuilder {
 
+    private UserSimpleDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static UserSimpleResponse build(User user) {
         if (user == null) return null;
 

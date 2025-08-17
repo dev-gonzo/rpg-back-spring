@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"Equipment\"")
+@Table(name = "tb_equipments")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +20,7 @@ public class EquipmentEntity {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "\"characterId\"", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "character_id", referencedColumnName = "id", nullable = false)
     private CharacterEntity character;
 
     @Column(nullable = false)
@@ -50,14 +50,14 @@ public class EquipmentEntity {
     @Column
     private Integer initiative;
 
-    @Column(name = "\"bookPage\"")
+    @Column(name = "book_page")
     private String bookPage;
 
     @CreationTimestamp
-    @Column(name = "\"createdAt\"", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
-    @Column(name = "\"updatedAt\"", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 }

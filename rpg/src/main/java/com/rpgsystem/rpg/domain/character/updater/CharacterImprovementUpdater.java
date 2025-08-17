@@ -17,8 +17,8 @@ public class CharacterImprovementUpdater {
         if (request == null || entity == null) return;
 
         entity.setName(Name.of(request.getName()).getValue());
-        entity.setCost(Cost.of(request.getCost()).getValue());
-        entity.setKitValue(Cost.of(request.getKitValue()).getValue());
+        entity.setCost(request.getCost() != null ? request.getCost() : 0);
+        entity.setKitValue(request.getKitValue() != null ? request.getKitValue() : 0);
 
     }
 

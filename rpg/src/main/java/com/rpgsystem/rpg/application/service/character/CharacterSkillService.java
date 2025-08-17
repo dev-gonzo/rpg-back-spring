@@ -36,7 +36,7 @@ public class CharacterSkillService {
         CharacterEntity character = characterService.getById(characterId);
         characterAccessValidator.validateControlAccess(character, user);
 
-        return CharacterSkillDtoBuilder.from(this.getById(id));
+        return CharacterSkillDtoBuilder.build(this.getById(id));
     }
 
     public List<CharacterSkillResponse> getSkills(String characterId, User user) {
@@ -44,7 +44,7 @@ public class CharacterSkillService {
         characterAccessValidator.validateControlAccess(character, user);
 
         return getCharacterSkills(characterId).stream()
-                .map(CharacterSkillDtoBuilder::from)
+                .map(CharacterSkillDtoBuilder::build)
                 .collect(Collectors.toList());
     }
 
@@ -56,6 +56,6 @@ public class CharacterSkillService {
         new CharacterSkillUpdater(request).apply(skill);
 
         SkillEntity saved = skillRepository.save(skill);
-        return CharacterSkillDtoBuilder.from(saved);
+        return CharacterSkillDtoBuilder.build(saved);
     }
 }

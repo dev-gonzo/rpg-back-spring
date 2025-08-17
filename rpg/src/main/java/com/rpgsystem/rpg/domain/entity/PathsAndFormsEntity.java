@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"PathsAndForms\"")
+@Table(name = "tb_paths_and_forms")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,21 +17,21 @@ import java.time.Instant;
 public class PathsAndFormsEntity {
 
     @Id
-    @Column(name = "\"characterId\"")
+    @Column(name = "character_id")
     private String characterId;
 
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-    @JoinColumn(name = "\"characterId\"")
+    @JoinColumn(name = "character_id")
     private CharacterEntity character;
 
-    @Column(name = "\"understandForm\"", nullable = false)
+    @Column(name = "understand_form", nullable = false)
     private Integer understandForm;
 
-    @Column(name = "\"createForm\"", nullable = false)
+    @Column(name = "create_form", nullable = false)
     private Integer createForm;
 
-    @Column(name = "\"controlForm\"", nullable = false)
+    @Column(name = "control_form", nullable = false)
     private Integer controlForm;
 
     @Column(nullable = false)
@@ -71,10 +71,10 @@ public class PathsAndFormsEntity {
     private Integer metamagic;
 
     @CreationTimestamp
-    @Column(name = "\"createdAt\"", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
-    @Column(name = "\"updatedAt\"", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 }

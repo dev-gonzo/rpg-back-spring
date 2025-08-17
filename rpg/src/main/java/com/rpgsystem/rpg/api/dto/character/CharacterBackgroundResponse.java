@@ -1,5 +1,6 @@
 package com.rpgsystem.rpg.api.dto.character;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -14,6 +15,7 @@ public class CharacterBackgroundResponse {
 
     private String title;
     private String text;
+    @JsonProperty("isPublic")
     private boolean isPublic;
 
     private Instant createdAt;

@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "\"RelevantPerson\"")
+@Table(name = "tb_relevant_people")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +20,7 @@ public class RelevantPeopleEntity {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "\"characterId\"", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "character_id", referencedColumnName = "id", nullable = false)
     private CharacterEntity character;
 
     @Column(nullable = false)
@@ -29,7 +29,7 @@ public class RelevantPeopleEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "\"apparentAge\"")
+    @Column(name = "apparent_age")
     private Integer apparentAge;
 
     @Column
@@ -38,14 +38,17 @@ public class RelevantPeopleEntity {
     @Column
     private String profession;
 
-    @Column(name = "\"briefDescription\"", columnDefinition = "TEXT")
+    @Column(name = "brief_description", columnDefinition = "TEXT")
     private String briefDescription;
 
+    @Column(name = "is_public", nullable = false)
+    private Boolean isPublic;
+
     @CreationTimestamp
-    @Column(name = "\"createdAt\"", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
-    @Column(name = "\"updatedAt\"", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 }

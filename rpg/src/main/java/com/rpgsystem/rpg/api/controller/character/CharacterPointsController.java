@@ -6,7 +6,7 @@ import com.rpgsystem.rpg.api.dto.character.CharacterPointsResponse;
 import com.rpgsystem.rpg.application.service.character.CharacterPointService;
 import com.rpgsystem.rpg.domain.entity.User;
 import com.rpgsystem.rpg.infrastructure.security.annotation.RequireAuthUser;
-import com.rpgsystem.rpg.infrastructure.security.util.AuthenticatedUserHelper;
+import com.rpgsystem.rpg.infrastructure.security.AuthenticatedUserProvider;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class CharacterPointsController {
 
     private final CharacterPointService service;
+    private final AuthenticatedUserProvider userProvider;
 
     @GetMapping
     @RequireAuthUser
@@ -34,7 +35,7 @@ public class CharacterPointsController {
             @Valid @RequestBody CharacterPointsRequest request
     ) {
 
-        User user = AuthenticatedUserHelper.get();
+        User user = userProvider.getAuthenticatedUser();
         CharacterPointsResponse characterInfoResponse = service.save(request, characterId, user);
 
         return ResponseEntity.ok(characterInfoResponse);
@@ -47,8 +48,8 @@ public class CharacterPointsController {
             @Valid @RequestBody CharacterCurrentPointsRequest request
     ) {
 
-        User user = AuthenticatedUserHelper.get();
-        CharacterPointsResponse characterInfoResponse = service.saveCurrentAdjust(request, characterId, user);
+        User user = userProvider.getAuthenticatedUser();
+        CharacterPointsResponse characterInfoResponse = service.saveCurrent(request, characterId, user);
 
         return ResponseEntity.ok(characterInfoResponse);
     }
@@ -60,7 +61,7 @@ public class CharacterPointsController {
             @Valid @RequestBody CharacterCurrentPointsRequest request
     ) {
 
-        User user = AuthenticatedUserHelper.get();
+        User user = userProvider.getAuthenticatedUser();
         CharacterPointsResponse characterInfoResponse = service.saveCurrentAdjust(request, characterId, user);
 
         return ResponseEntity.ok(characterInfoResponse);

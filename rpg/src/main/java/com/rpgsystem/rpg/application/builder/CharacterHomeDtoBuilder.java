@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 
 public class CharacterHomeDtoBuilder {
 
+    private CharacterHomeDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class cannot be instantiated");
+    }
+
     public static CharacterHomeDto from(CharacterEntity c) {
         return CharacterHomeDto.builder()
                 .id(c.getId())

@@ -18,7 +18,6 @@ public class CharacterInfoRequest {
 
         private String profession;
 
-        @NotNull(message = "Birth date is required")
         private LocalDate birthDate;
 
         private String birthPlace;

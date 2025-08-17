@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-@Table(name = "\"User\"")
+@Table(name = "tb_users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,15 +34,21 @@ public class User implements UserDetails {
     private String password;
 
     @CreationTimestamp
-    @Column(name = "\"createdAt\"", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
-    @Column(name = "\"updatedAt\"", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
-    @Column(name = "\"isMaster\"", nullable = false)
+    @Column(name = "is_master", nullable = false)
     private boolean isMaster;
+
+    @Column(name = "country", length = 100)
+    private String country;
+
+    @Column(name = "city", length = 100)
+    private String city;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

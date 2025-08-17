@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.RitualPowerEntity;
 
 public class CharacterRitualPowerDtoBuilder {
 
+    private CharacterRitualPowerDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static CharacterRitualPowerResponse from(RitualPowerEntity entity) {
         return CharacterRitualPowerResponse.builder()
                 .id(entity.getId())

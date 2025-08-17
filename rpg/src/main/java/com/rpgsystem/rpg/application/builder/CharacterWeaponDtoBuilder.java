@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.WeaponEntity;
 
 public class CharacterWeaponDtoBuilder {
 
+    private CharacterWeaponDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static CharacterWeaponResponse from(WeaponEntity entity) {
         return CharacterWeaponResponse.builder()
                 .id(entity.getId())

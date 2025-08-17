@@ -15,15 +15,16 @@ public class CharacterInfoUpdater implements CharacterEntityUpdater {
     public void apply(CharacterEntity entity) {
         if (info == null || entity == null) return;
 
-        entity.setName(info.getName().getValue());
-        entity.setProfession(info.getProfession());
-        entity.setBirthDate(info.getBirthDate());
-        entity.setBirthPlace(info.getBirthPlace());
-        entity.setGender(info.getGender());
-        entity.setAge(info.getAge());
-        entity.setApparentAge(info.getApparenteAge());
+        entity.setName(info.getName() != null ? info.getName().getValue() : null);
+        entity.setProfession(info.getProfession() != null ? info.getProfession() : null);
+        entity.setBirthDate(info.getBirthDate() != null ? info.getBirthDate() : null);
+        entity.setBirthPlace(info.getBirthPlace() != null ? info.getBirthPlace() : null);
+        entity.setGender(info.getGender() != null ? info.getGender() : null);
+        entity.setAge(info.getAge() != null ? info.getAge() : null);
+        entity.setApparentAge(info.getApparenteAge() != null ? info.getApparenteAge() : null);
         entity.setHeightCm(info.getHeightCm() != null ? info.getHeightCm().getCentimeters() : null);
         entity.setWeightKg(info.getWeightKg() != null ? info.getWeightKg().getKilograms() : null);
-        entity.setReligion(info.getReligion());
+        entity.setReligion(info.getReligion() != null ? info.getReligion() : null);
     }
+
 }

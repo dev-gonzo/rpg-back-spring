@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.AttributeEntity;
 
 public class CharacterAttributeDtoBuilder {
 
+    private CharacterAttributeDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class cannot be instantiated");
+    }
+
     public static CharacterAttributeResponse from(AttributeEntity attribute) {
         return CharacterAttributeResponse.builder()
                 .characterId(attribute.getCharacter().getId())

@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.NoteEntity;
 
 public class CharacterNoteDtoBuilder {
 
+    private CharacterNoteDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static CharacterNoteResponse from(NoteEntity entity) {
         return CharacterNoteResponse.builder()
                 .id(entity.getId())

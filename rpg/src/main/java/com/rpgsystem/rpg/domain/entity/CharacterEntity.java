@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "\"Character\"")
+@Table(name = "tb_characters")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,28 +27,28 @@ public class CharacterEntity {
 
     private String profession;
 
-    @Column(name = "\"birthDate\"", nullable = false)
+    @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    @Column(name = "\"birthPlace\"")
+    @Column(name = "birth_place")
     private String birthPlace;
 
     private String gender;
 
-    @Column(name = "\"heightCm\"")
+    @Column(name = "height_cm")
     private Integer heightCm;
 
-    @Column(name = "\"weightKg\"")
+    @Column(name = "weight_kg")
     private Integer weightKg;
 
     private Integer age;
 
-    @Column(name = "\"apparentAge\"")
+    @Column(name = "apparent_age")
     private Integer apparentAge;
 
     private String religion;
 
-    @Column(name = "\"secretSociety\"")
+    @Column(name = "secret_society")
     private String secretSociety;
 
     private String cabala;
@@ -58,63 +58,63 @@ public class CharacterEntity {
     private String mentor;
 
     @ElementCollection
-    @CollectionTable(name = "\"Character_societyAllies\"", joinColumns = @JoinColumn(name = "character_id"))
-    @Column(name = "value")
+    @CollectionTable(name = "tb_character_society_allies", joinColumns = @JoinColumn(name = "character_id"))
+    @Column(name = "\"value\"")
     private List<String> societyAllies;
 
-    @Column(name = "\"hitPoints\"")
+    @Column(name = "hit_points")
     private Integer hitPoints;
 
-    @Column(name = "\"currentHitPoints\"")
+    @Column(name = "current_hit_points")
     private Integer currentHitPoints;
 
     private Integer initiative;
 
-    @Column(name = "\"currentInitiative\"")
+    @Column(name = "current_initiative")
     private Integer currentInitiative;
 
-    @Column(name = "\"heroPoints\"")
+    @Column(name = "hero_points")
     private Integer heroPoints;
 
-    @Column(name = "\"currentHeroPoints\"")
+    @Column(name = "current_hero_points")
     private Integer currentHeroPoints;
 
-    @Column(name = "\"magicPoints\"")
+    @Column(name = "magic_points")
     private Integer magicPoints;
 
-    @Column(name = "\"currentMagicPoints\"")
+    @Column(name = "current_magic_points")
     private Integer currentMagicPoints;
 
-    @Column(name = "\"faithPoints\"")
+    @Column(name = "faith_points")
     private Integer faithPoints;
 
-    @Column(name = "\"currentFaithPoints\"")
+    @Column(name = "current_faith_points")
     private Integer currentFaithPoints;
 
-    @Column(name = "\"protectionIndex\"")
+    @Column(name = "protection_index")
     private Integer protectionIndex;
 
-    @Column(name = "\"currentProtectionIndex\"")
+    @Column(name = "current_protection_index")
     private Integer currentProtectionIndex;
 
     private Integer level;
 
-    @Column(name = "\"experiencePoints\"")
+    @Column(name = "experience_points")
     private Integer experiencePoints;
 
-    @Column(name = "\"isKnown\"", nullable = false)
+    @Column(name = "is_known", nullable = false)
     private boolean isKnown;
 
     @ManyToOne
-    @JoinColumn(name = "\"controlUserId\"")
+    @JoinColumn(name = "control_user_id")
     private User controlUser;
 
     @CreationTimestamp
-    @Column(name = "\"createdAt\"", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
-    @Column(name = "\"updatedAt\"", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
     @Column(columnDefinition = "TEXT")

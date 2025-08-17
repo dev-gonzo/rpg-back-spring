@@ -22,7 +22,11 @@ public class UserController {
     @GetMapping("/me")
     @RequireAuthUser
     public ResponseEntity<?> getLoggedUserInfo() {
-        User user = AuthenticatedUserHelper.get();
+        User user = userProvider.getAuthenticatedUser();
+        
+        if (user == null) {
+            return ResponseEntity.status(401).build();
+        }
 
         return ResponseEntity.ok(Map.of(
                 "id", user.getId(),

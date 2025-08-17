@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.ImprovementEntity;
 
 public class CharacterImprovementDtoBuilder {
 
+    private CharacterImprovementDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static CharacterImprovementResponse from(ImprovementEntity entity) {
         return CharacterImprovementResponse.builder()
                 .characterId(entity.getCharacter().getId())

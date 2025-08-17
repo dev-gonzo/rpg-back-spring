@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.PathsAndFormsEntity;
 
 public class CharacterPathsAndFormsDtoBuilder {
 
+    private CharacterPathsAndFormsDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static CharacterPathsAndFormsResponse from(PathsAndFormsEntity entity) {
         return CharacterPathsAndFormsResponse.builder()
                 .characterId(entity.getCharacter().getId())

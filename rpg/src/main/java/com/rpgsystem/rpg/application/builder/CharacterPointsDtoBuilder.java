@@ -6,6 +6,10 @@ import com.rpgsystem.rpg.domain.entity.CharacterEntity;
 
 public class CharacterPointsDtoBuilder {
 
+    private CharacterPointsDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static CharacterPointsResponse from(CharacterEntity entity) {
         return CharacterPointsResponse.builder()
                 .characterId(entity.getId())

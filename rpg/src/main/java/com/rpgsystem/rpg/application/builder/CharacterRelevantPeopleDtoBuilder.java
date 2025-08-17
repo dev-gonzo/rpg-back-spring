@@ -5,6 +5,10 @@ import com.rpgsystem.rpg.domain.entity.RelevantPeopleEntity;
 
 public class CharacterRelevantPeopleDtoBuilder {
 
+    private CharacterRelevantPeopleDtoBuilder() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static CharacterRelevantPeopleResponse from(RelevantPeopleEntity entity) {
         return CharacterRelevantPeopleResponse.builder()
                 .id(entity.getId())

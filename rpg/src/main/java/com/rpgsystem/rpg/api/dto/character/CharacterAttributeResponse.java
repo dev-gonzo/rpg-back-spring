@@ -1,5 +1,6 @@
 package com.rpgsystem.rpg.api.dto.character;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -13,7 +14,10 @@ public class CharacterAttributeResponse {
     private Integer fr;
     private Integer dex;
     private Integer agi;
+
+    @JsonProperty("int")
     private Integer intel;
+
     private Integer will;
     private Integer per;
     private Integer car;
